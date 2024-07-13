@@ -9,8 +9,12 @@ import { Head, Link, useForm } from '@inertiajs/react';
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
+        role: '',
         email: '',
+        address:"",
         password: '',
+        role_title: '',
+        phone_number: '',
         password_confirmation: '',
     });
 
@@ -97,6 +101,75 @@ export default function Register() {
                     />
 
                     <InputError message={errors.password_confirmation} className="mt-2" />
+                </div>
+
+                {/* TODO CONVERT THIS TO A RADIO BUTTON */}
+                <div className="mt-4">
+                    <InputLabel htmlFor="role" value="role" />
+
+                    <TextInput
+                        id="role"
+                        // type="input"
+                        name="role"
+                        value={data.role}
+                        className="mt-1 block w-full"
+                        autoComplete="role"
+                        onChange={(e) => setData('role', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.role} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="role_title" value="role_title" />
+
+                    <TextInput
+                        id="role_title"
+                        name="role_title"
+                        value={data.role_title}
+                        className="mt-1 block w-full"
+                        autoComplete="role_title"
+                        onChange={(e) => setData('role_title', e.target.value)}
+                    />
+
+                    <InputError message={errors.role_title} className="mt-2" />
+                </div>
+                <div className="mt-4">
+                    <InputLabel htmlFor="address" value="address" />
+
+                    <TextInput
+                        id="address"
+                        name="address"
+                        pattern="[A-Za-z0-9\s.,]+"
+                        title="Enter a valid address"
+                        value={data.address}
+                        className="mt-1 block w-full"
+                        autoComplete="address"
+                        onChange={(e) => setData('address', e.target.value)}
+                    />
+
+                    <InputError message={errors.address} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="phone_number" value="phone_number" />
+
+                    <TextInput
+                        id="phone_number"
+                        name="phone_number"
+                        type="tel"
+                        // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                        title="Enter a valid phone number in the format XXX-XXX-XXXX"
+                        maxLength="13"
+                        value={data.phone_number}
+                        className="mt-1 block w-full"
+                        autoComplete="phone_number"
+                        onChange={(e) => setData('phone_number', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.phone_number} className="mt-2" />
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
