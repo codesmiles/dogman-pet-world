@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('address');
+            $table->string('phone_number')->unique();
+            $table->enum("role", ["admin", "employee", "client"])->default("client");
+            $table->string("role_title")->nullable();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
