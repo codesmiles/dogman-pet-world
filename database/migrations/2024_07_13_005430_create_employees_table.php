@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->unsignedBigInteger('user_id');
             $table->string("employee_id")->default(generateEmployeeId());
             $table->dateTime("employment_date")->default(now()->toDateTimeString());
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->enum("role", ["admin", "employee"]);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate("cascade")->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

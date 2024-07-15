@@ -9,11 +9,9 @@ import { Head, Link, useForm } from '@inertiajs/react';
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
-        role: '',
         email: '',
         address:"",
         password: '',
-        role_title: '',
         phone_number: '',
         password_confirmation: '',
     });
@@ -103,7 +101,7 @@ export default function Register() {
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
-                {/* TODO CONVERT THIS TO A RADIO BUTTON */}
+                {/* TODO CONVERT THIS TO A RADIO BUTTON
                 <div className="mt-4">
                     <InputLabel htmlFor="role" value="role" />
 
@@ -134,7 +132,7 @@ export default function Register() {
                     />
 
                     <InputError message={errors.role_title} className="mt-2" />
-                </div>
+                </div> */}
                 <div className="mt-4">
                     <InputLabel htmlFor="address" value="address" />
 
@@ -153,7 +151,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="phone_number" value="phone_number" />
+                    <InputLabel htmlFor="phone_number" value="phone Number" />
 
                     <TextInput
                         id="phone_number"
