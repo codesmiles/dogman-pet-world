@@ -3,8 +3,10 @@
 namespace App\Console\Commands\User;
 
 use App\Models\User;
+use App\Models\Employee;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class MakeUserCommand extends Command
 {
@@ -13,7 +15,7 @@ class MakeUserCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'app:filament-user-custom';
+    protected $signature = 'create:admin-user';
 
     /**
      * The console command description.
@@ -28,20 +30,102 @@ class MakeUserCommand extends Command
      */
     public function handle()
     {
+        /*
+        |--------------------------------------------------------------------------
+        | create Admin User info
+        |--------------------------------------------------------------------------
+        */
         $this->info('Creating a new Filament custom admin user...');
-        $name = $this->ask('Input Name');
-        $email = $this->ask('Email');
-        $address = $this->ask('Address');
-        $password = $this->secret('Password');
-        
 
-        // User::create([
-        //     'name' => $name,
-        //     'email' => $email,
-        //     'password' => Hash::make($password),
-        //     'address' => $address,  // Add this line to include address
-        // ]);
+        /*
+        |--------------------------------------------------------------------------
+        | calling terminal request
+        |--------------------------------------------------------------------------
+        */
+        $data = $this->getUserData();
 
-        $this->info('User created successfully.');
+        /*
+        |--------------------------------------------------------------------------
+        | validating parameters
+        |--------------------------------------------------------------------------
+        */
+        $validator = Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'address' => ['nullable', 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:8'],
+            "phone_number" => ['required', 'string', 'max:14',"min:11",]
+        ]);
+
+        if ($validator->fails()) {
+            $this->error('Admin User creation failed due to validation errors:');
+            foreach ($validator->errors()->all() as $error) {
+                $this->error($error);
+            }
+            return;
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | seting varables
+        |--------------------------------------------------------------------------
+        */
+        $create_user_payload = [
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'address' => $data['address'],
+            'password' => Hash::make($data['password']),
+            'phone_number' => $data['phone_number'],
+        ];
+
+        /*
+        |--------------------------------------------------------------------------
+        | creating user
+        |--------------------------------------------------------------------------
+        */
+        $user_created = User::create($create_user_payload);
+
+        if(! $user_created) {
+            $this->error('Admin User creation failed due to database error.');
+            return;
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | set employee payload
+        |--------------------------------------------------------------------------
+        */
+        $employee_payload = [
+            "user_id" =>$user_created->id,
+            "is_admin" => true,
+            // "employment_date" => now()->toDateTimeString(),
+        ];
+
+        /*
+        |--------------------------------------------------------------------------
+        | set employee payload
+        |--------------------------------------------------------------------------
+        */
+        $employee_created = Employee::create($employee_payload);
+
+        if(!$employee_created){
+            $this->error('Admin User creation failed due to database error.');
+            return;
+        }
+
+        $this->info('Admin user created successfully!');
+    }
+
+    protected function getUserData()
+    {
+        return [
+            'name' => $this->ask('Input Your full Name:'),
+            'email' => $this->ask('Input your Email:'),
+            "address" => $this->ask('Input Your Address:'),
+            'password' => $this->secret('Input User Password:'),
+            "phone_number" => $this->ask('Input your phone number:')
+
+        ];
     }
 }
