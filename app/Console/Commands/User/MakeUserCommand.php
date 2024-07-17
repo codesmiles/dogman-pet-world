@@ -120,11 +120,11 @@ class MakeUserCommand extends Command
     protected function getUserData()
     {
         return [
-            'name' => $this->ask('Input Your full Name:'),
-            'email' => $this->ask('Input your Email:'),
+            'name' => $this->ask('Input Your full Name*:'),
+            'email' => $this->ask('Input your Email*:'),
             "address" => $this->ask('Input Your Address:'),
-            'password' => $this->secret('Input User Password:'),
-            "phone_number" => $this->ask('Input your phone number:')
+            'password' => $this->secret('Input User Password*:'),
+            "phone_number" => $this->ask('Input your phone number*:')
 
         ];
     }

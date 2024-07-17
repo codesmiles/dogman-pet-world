@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pet_activity_schedule', function (Blueprint $table) {
+        Schema::create('pet_activity_schedules', function (Blueprint $table) {
             $table->id();
             $table->dateTime("next_visit_date")->nullable();
             $table->unsignedBigInteger("pet_id");
