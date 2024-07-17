@@ -28,6 +28,7 @@ enum ResponseCodeEnums: int
     case AUTH_REQUEST_ERROR = 3001;
     case AUTH_REQUEST_SUCCESSFUL = 3002;
     case AUTH_REQUEST_VALIDATION_ERROR = 3003;
+    case INVALID_AUTHORIZATION = 3004;
 
 
 
@@ -87,6 +88,11 @@ enum ResponseCodeEnums: int
             ],
             self::AUTH_REQUEST_SUCCESSFUL => [
                 'status' => 200,
+                'response_code' => $this,
+                'message' => $this->name
+            ],
+            self::INVALID_AUTHORIZATION => [
+                'status' => 400,
                 'response_code' => $this,
                 'message' => $this->name
             ],

@@ -101,25 +101,7 @@ export default function Register() {
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
-                {/* TODO CONVERT THIS TO A RADIO BUTTON
-                <div className="mt-4">
-                    <InputLabel htmlFor="role" value="role" />
-
-                    <TextInput
-                        id="role"
-                        // type="input"
-                        name="role"
-                        value={data.role}
-                        className="mt-1 block w-full"
-                        autoComplete="role"
-                        onChange={(e) => setData('role', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.role} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
+                {/* <div className="mt-4">
                     <InputLabel htmlFor="role_title" value="role_title" />
 
                     <TextInput
@@ -133,6 +115,7 @@ export default function Register() {
 
                     <InputError message={errors.role_title} className="mt-2" />
                 </div> */}
+                
                 <div className="mt-4">
                     <InputLabel htmlFor="address" value="address" />
 

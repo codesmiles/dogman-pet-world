@@ -18,6 +18,13 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
+/*
+|--------------------------------------------------------------------------
+| custom middleware
+|--------------------------------------------------------------------------
+*/
+use App\Http\Middleware\Employee\IsAdminMiddleware;
+
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -50,9 +57,10 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-            ])
-            ->authMiddleware([
-                Authenticate::class,
+                ])
+                ->authMiddleware([
+                    Authenticate::class,
+                    IsAdminMiddleware::class,
             ]);
     }
 }
