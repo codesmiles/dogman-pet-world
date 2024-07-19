@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Str;
-function generateEmployeeId(): string
+function generateId()
 {
-    return Str::random(10);
+   $value = mt_rand(0,100000);
+
+    return $value;
 }

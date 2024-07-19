@@ -11,10 +11,21 @@ class Pet extends Model
     use HasFactory;
 
     protected $fillable = [
-        "user_id",
         "name",
-        "species",
         "breed",
+        "photo",
+        "genus",
+        "weight",
+        "gender",
+        "status",
+        "user_id",
+        "species",
+        "user_id",
+        "file_number",
+        "date_of_birth",
+        "microchip_number",
+        "date_of_adoption",
+        "retainership_plan",
     ];
 
     public function user(){

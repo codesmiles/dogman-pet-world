@@ -16,15 +16,17 @@ return new class extends Migration
             $table->string('name');
             $table->string('breed');
             $table->string('photo')->nullable();
-            $table->char('microchip_number', 10);
-            $table->unsignedInteger('age')->nullable();
+            $table->char('microchip_number', 10)->nullable();
             $table->dateTime('date_of_birth')->nullable();
             $table->unsignedInteger('weight')->nullable();
             $table->dateTime('date_of_adoption')->nullable();
-            $table->enum('sex', ["male", "female", "harmaphrodite"]);
+            $table->enum('gender', ["male", "female", "harmaphrodite"]);
             $table->enum('status', ["alive", "dead", "neutered"])->default("alive");
-            $table->enum('retainership_plan', ["bronze", "silver","gold", "custom"])->nullable();
+            $table->enum('retainership_plan', ["bronze", "silver","gold", "custom","none"])->nullable();
             $table->enum('genus', ["canine", "feline", "caprine", "ovine", "equine", "bovine", "pisces", "oryctolagus"]);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign("user_id")->references('id')->on("users")->onDelete('cascade');
+            $table->unsignedInteger('file_number')->nullable();
             $table->timestamps();
         });
     }

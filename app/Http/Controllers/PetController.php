@@ -53,7 +53,7 @@ class PetController extends Controller
      */
     public function update(UpdatePetRequest $request, Pet $pet)
     {
-        //
+        return true;
     }
 
     /**

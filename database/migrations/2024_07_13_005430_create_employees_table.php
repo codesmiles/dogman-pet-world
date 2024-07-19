@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string("employee_id")->default(generateEmployeeId());
+            $table->string("employee_id");
             $table->dateTime("employment_date")->default(now()->toDateTimeString());
             $table->boolean('is_admin')->default(false);
             $table->unsignedBigInteger('user_id');

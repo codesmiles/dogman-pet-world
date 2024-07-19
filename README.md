@@ -2,5 +2,6 @@
 
 ## Commands
 
-- ```app:filament-user-custom``` -> Create a new Filament custom admin user user custom
+- ```create:admin-user``` -> Create a new Filament custom admin user user custom
 - ```alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'``` -> command for configuring shell alias from ```./vendor/bin/sail``` to ```sail up```
+- ```php artisan make:filament-relation-manager ClientResource Employee``` -> command for relating  UserResource to Employee
