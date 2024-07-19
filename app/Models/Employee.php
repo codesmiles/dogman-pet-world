@@ -25,4 +25,8 @@ class Employee extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function pet_activity_schedules(){
+        return $this->hasMany(pet_activity_schedule::class);
+    }
 }
