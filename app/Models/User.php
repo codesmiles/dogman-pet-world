@@ -22,6 +22,7 @@ class User extends Authenticatable
         "address",
         'password',
         "client_id",
+        "role_title",
         "phone_number"
     ];
 
@@ -56,4 +57,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pet::class);
     }
+    // protected $attributes = [
+    //     'client_id' => 1, // Default value for client_id
+    // ];
 }

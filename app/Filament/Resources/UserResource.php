@@ -26,12 +26,11 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required()->maxLength(255)->placeholder("Input Name"),
-                Forms\Components\TextInput::make('client_id')->required()->maxLength(255)->default("DPW/client/".generateId())->disabled(),
+                // Forms\Components\TextInput::make('client_id')->required()->maxLength(255)->default("DPW/client/".generateId())->disabled(),
                 Forms\Components\TextInput::make('email')->required()->email()->placeholder("Input Email Address"),
                 Forms\Components\TextInput::make('address')->nullable()->maxLength(255)->placeholder("Input Address"),
                 Forms\Components\TextInput::make('password')->required()->minLength(8)->password()->rules(['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/'])->default('DefaultPassword123!'),
                 Forms\Components\TextInput::make('phone_number')->required()->tel()->label('Phone Number'),
-
             ]);
     }
 
@@ -73,7 +72,7 @@ class UserResource extends Resource
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
-            
+
         ];
     }
 }
