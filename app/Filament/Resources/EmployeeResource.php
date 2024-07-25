@@ -24,9 +24,9 @@ class EmployeeResource extends Resource
         return $form
             ->schema([
 
-                Forms\Components\Select::make('user_id')->relationship('user', "client_id")->searchable()->preload()->required()->label("client_id"),
-                Forms\Components\TextInput::make('employee_id')->default("DPW/employee/" . generateId())->disabled()->label("Employee ID"),
-                Forms\Components\DateTimePicker::make('employment_date')->format('Y-m-d H:i')->default(now())->label("Employment Date"),
+                Forms\Components\Select::make('user_id')->relationship('user', "client_id")->searchable()->preload()->required()->label("Client Id")->disabled(fn ($record) => $record !== null),
+                Forms\Components\TextInput::make('employee_id')->disabled()->label("Employee ID")->default("DPW/employee/" . generateId()),
+                Forms\Components\DateTimePicker::make('employment_date')->format('Y-m-d H:i')->default(now())->label("Employment Date")->disabled(fn ($record) => $record !== null),
                 Forms\Components\Toggle::make('is_admin')->default(false)->label("Is an admin?"),
             ]);
     }
@@ -35,7 +35,11 @@ class EmployeeResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('user_id'),
+                Tables\Columns\TextColumn::make('employee_id'),
+                Tables\Columns\TextColumn::make('employment_date'),
+                Tables\Columns\ToggleColumn::make('is_admin'),
+
             ])
             ->filters([
                 //

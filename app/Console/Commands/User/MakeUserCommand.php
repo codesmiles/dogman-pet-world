@@ -75,7 +75,7 @@ class MakeUserCommand extends Command
             'email' => $data['email'],
             'address' => $data['address'],
             'password' => Hash::make($data['password']),
-            "client_id"=> "DPW/employee/admin",
+            "client_id"=> "DPW/client/admin",
             'phone_number' => $data['phone_number'],
         ];
 
@@ -100,7 +100,7 @@ class MakeUserCommand extends Command
         $employee_payload = [
             "user_id" =>$user_created->id,
             "is_admin" => true,
-            "employee_id" => generateId(),
+            "employee_id" => "DPW/employee/admin",
             "employment_date" => now()->toDateTimeString(),
         ];
 

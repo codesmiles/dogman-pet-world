@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger("employee_id");
             $table->foreign("employee_id")->references('id')->on("employees")->onDelete('cascade')->onUpdate('cascade');
             $table->string("treatment_or_vaccinations");
+            $table->string("report")->nullable();
             $table->timestamps(); // will work as the current date
         });
     }

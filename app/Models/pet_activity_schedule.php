@@ -10,9 +10,10 @@ class pet_activity_schedule extends Model
     use HasFactory;
 
     protected $fillable = [
-        "next_visit_date",
+        "report",
         "pet_id",
         "employee_id",
+        "next_visit_date",
         "treatment_or_vaccinations",
     ];
 

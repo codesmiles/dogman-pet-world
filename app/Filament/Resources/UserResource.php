@@ -30,7 +30,7 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('email')->required()->email()->placeholder("Input Email Address"),
                 Forms\Components\TextInput::make('address')->nullable()->maxLength(255)->placeholder("Input Address"),
                 Forms\Components\TextInput::make('password')->required()->minLength(8)->password()->rules(['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/'])->default('DefaultPassword123!'),
-                Forms\Components\TextInput::make('phone_number')->required()->tel(),
+                Forms\Components\TextInput::make('phone_number')->required()->tel()->label('Phone Number'),
 
             ]);
     }
@@ -39,7 +39,12 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('client_id'),
+                Tables\Columns\TextColumn::make('email'),
+                Tables\Columns\TextColumn::make('address'),
+                Tables\Columns\TextColumn::make('phone_number'),
+
             ])
             ->filters([
                 //
@@ -68,6 +73,7 @@ class UserResource extends Resource
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
+            
         ];
     }
 }

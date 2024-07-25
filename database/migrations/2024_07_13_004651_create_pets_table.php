@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('gender', ["male", "female", "harmaphrodite"]);
             $table->enum('status', ["alive", "dead", "neutered"])->default("alive");
             $table->enum('retainership_plan', ["bronze", "silver","gold", "custom","none"])->nullable();
+            $table->string('custom_plan_details')->nullable();
             $table->enum('genus', ["canine", "feline", "caprine", "ovine", "equine", "bovine", "pisces", "oryctolagus"]);
             $table->unsignedBigInteger('user_id');
             $table->foreign("user_id")->references('id')->on("users")->onDelete('cascade');

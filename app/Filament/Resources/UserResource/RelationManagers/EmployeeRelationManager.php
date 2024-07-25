@@ -30,15 +30,18 @@ class EmployeeRelationManager extends RelationManager
             ->recordTitleAttribute('user_id')
             ->columns([
                 Tables\Columns\TextColumn::make('user_id'),
+                Tables\Columns\TextColumn::make('employee_id'),
+                Tables\Columns\TextColumn::make('employment_date'),
+                Tables\Columns\ToggleColumn::make('is_admin'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                // Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
