@@ -12,7 +12,6 @@ class CreateUser extends CreateRecord
 {
     protected static string $resource = UserResource::class;
 
-    
     protected function handleRecordCreation(array $data): Model
     {
         $data["client_id"] = "DPW/client/".generateId();

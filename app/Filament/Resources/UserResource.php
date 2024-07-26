@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use App\Models\User;
 use Filament\Tables;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
@@ -12,8 +14,8 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UserResource\RelationManagers;
-use App\Filament\Resources\UserResource\RelationManagers\EmployeeRelationManager;
 use App\Filament\Resources\UserResource\RelationManagers\PetRelationManager;
+use App\Filament\Resources\UserResource\RelationManagers\EmployeeRelationManager;
 
 class UserResource extends Resource
 {
@@ -26,7 +28,13 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required()->maxLength(255)->placeholder("Input Name"),
-                // Forms\Components\TextInput::make('client_id')->required()->maxLength(255)->default("DPW/client/".generateId())->disabled(),
+                Forms\Components\TextInput::make('client_id')->required()->maxLength(255)->default(
+                    function (?User $record, Get $get, Set $set) {
+                        if (!empty($record) && empty($get('client_id'))) {
+                            $set('client_id', $record->client_id);
+                        }
+                        return "DPW/client/" . generateId();
+                    })->disabled(),
                 Forms\Components\TextInput::make('email')->required()->email()->placeholder("Input Email Address"),
                 Forms\Components\TextInput::make('address')->nullable()->maxLength(255)->placeholder("Input Address"),
                 Forms\Components\TextInput::make('password')->required()->minLength(8)->password()->rules(['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/'])->default('DefaultPassword123!'),
@@ -76,3 +84,4 @@ class UserResource extends Resource
         ];
     }
 }
+
