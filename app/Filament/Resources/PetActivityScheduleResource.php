@@ -2,17 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PetActivityScheduleResource\Pages;
-use App\Filament\Resources\PetActivityScheduleResource\RelationManagers;
-use App\Models\pet_activity_schedule;
+use App\Models\Pet;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Illuminate\Support\Facades\Auth;
+use App\Models\pet_activity_schedule;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\Auth;
+use App\Filament\Resources\PetActivityScheduleResource\Pages;
+use App\Filament\Resources\PetActivityScheduleResource\RelationManagers;
 
 class PetActivityScheduleResource extends Resource
 {
@@ -24,17 +25,13 @@ class PetActivityScheduleResource extends Resource
     {
         return $form
             ->schema([
-                // Forms\Components\Select::make('user_id')
-                // ->relationship("user","client_id")
-                // ->default(Auth::id()) // Set the default value to the currently logged-in user's ID
-                // ->label('User')
-                // ->disabled(),
-
-                // next visit date
-                // pet id
-                // employee id
-                // treatment or vaccinations
-                // report
+                Forms\Components\Select::make('pet_id')
+                    ->relationship(name: 'pet', titleAttribute: "name")
+                    ->getOptionLabelFromRecordUsing(fn(Pet $record) => "{$record->name} ({$record->breed} | {$record->user->client_id})")
+                    ->searchable()->preload()->required()->label("Pet")->disabled(fn($record) => $record !== null),
+                Forms\Components\DateTimePicker::make('next_visit_date')->format('Y-m-d H:i')->default(now())->label("Next Visit Date"),
+                Forms\Components\TextInput::make('treatment_or_vaccinations')->maxLength(255)->placeholder("Input Treatment or Vaccinations")->label("Treatment or Vaccinations")->required(),
+                Forms\Components\Textarea::make('report')->label('Reports')->placeholder("Input the following additional Information")
             ]);
     }
 
@@ -42,7 +39,10 @@ class PetActivityScheduleResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('pet_id'),
+                Tables\Columns\TextColumn::make('next_visit_date'),
+                Tables\Columns\TextColumn::make('treatment_or_vaccinations'),
+                Tables\Columns\TextColumn::make('report'),
             ])
             ->filters([
                 //

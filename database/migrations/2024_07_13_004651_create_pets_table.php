@@ -27,7 +27,7 @@ return new class extends Migration
             $table->enum('genus', ["canine", "feline", "caprine", "ovine", "equine", "bovine", "pisces", "oryctolagus"]);
             $table->unsignedBigInteger('user_id');
             $table->foreign("user_id")->references('id')->on("users")->onDelete('cascade');
-            $table->unsignedInteger('file_number')->nullable();
+            $table->string('file_number')->nullable();
             $table->timestamps();
         });
     }

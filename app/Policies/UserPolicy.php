@@ -44,7 +44,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        return auth()->user()->employee;
+        return auth()->user()->employee === $model->employee;
     }
 
     /**
@@ -52,7 +52,7 @@ class UserPolicy
      */
     public function restore(User $user, User $model): bool
     {
-        return auth()->user()->employee;
+        return auth()->user()->employee === $model->employee;
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\UserResource\RelationManagers;
+namespace App\Filament\Resources\PetResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -10,15 +10,15 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class EmployeeRelationManager extends RelationManager
+class PetActivityScheduleRelationManager extends RelationManager
 {
-    protected static string $relationship = 'Employee';
+    protected static string $relationship = 'pet_activity_schedule';
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_id')
+                Forms\Components\TextInput::make('pet_id')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -27,21 +27,18 @@ class EmployeeRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('user_id')
+            ->recordTitleAttribute('pet_id')
             ->columns([
-                Tables\Columns\TextColumn::make('user_id'),
-                Tables\Columns\TextColumn::make('employee_id'),
-                Tables\Columns\TextColumn::make('employment_date'),
-                Tables\Columns\IconColumn::make('is_admin')->boolean(),
+                Tables\Columns\TextColumn::make('pet_id'),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                // Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

@@ -18,7 +18,6 @@ class Pet extends Model
         "weight",
         "gender",
         "status",
-        "user_id",
         "species",
         "user_id",
         "file_number",

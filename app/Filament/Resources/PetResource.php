@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\PetResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PetResource\RelationManagers;
+use App\Filament\Resources\PetResource\RelationManagers\PetActivityScheduleRelationManager;
 
 class PetResource extends Resource
 {
@@ -24,7 +25,7 @@ class PetResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('file_number')->maxLength(255)->placeholder("Input File Number")->label("File Number")->default("file_" . generateId())->disabled(),
+                Forms\Components\TextInput::make('file_number')->maxLength(255)->placeholder("Input File Number")->label("File Number")->default("file_" . generateId()),
                 Forms\Components\Select::make("user_id")->relationship("user", "client_id")->label("Owner ID")->searchable()->required(),
                 Forms\Components\TextInput::make('name')->required()->maxLength(255)->placeholder("Input Name")->label("Pet Name"),
                 Forms\Components\Select::make('genus')->options(["canine", "feline", "caprine", "ovine", "equine", "bovine", "pisces", "oryctolagus"])->searchable()->required()->label("Pet Genus Name"),
@@ -43,7 +44,8 @@ class PetResource extends Resource
                     ->required()
                     ->label('Retainership Plan')
                     ->live(),
-                    Forms\Components\Textarea::make('custom_plan_details')
+                    
+                Forms\Components\Textarea::make('custom_plan_details')
                     ->label('Custom Plan Details')
                     ->requiredIf('retainership_plan', "custom")
                     ->hidden(fn(Get $get): bool => $get('retainership_plan') !== "custom"),
@@ -80,7 +82,7 @@ class PetResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PetActivityScheduleRelationManager::class,
         ];
     }
 
