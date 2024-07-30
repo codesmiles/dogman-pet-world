@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\EmployeeResource\Pages;
-use App\Filament\Resources\EmployeeResource\RelationManagers;
-use App\Models\Employee;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\User;
 use Filament\Tables;
+use App\Models\Employee;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\EmployeeResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\EmployeeResource\RelationManagers;
 use App\Filament\Resources\EmployeeResource\RelationManagers\PetActivityScheduleRelationManager;
 
 class EmployeeResource extends Resource
@@ -24,9 +25,10 @@ class EmployeeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')->relationship('user', "client_id")->searchable()->preload()->required()->label("Client Id")->disabled(fn ($record) => $record !== null),
-                // Forms\Components\TextInput::make('employee_id')->label("Employee ID")->default("DPW/employee/" . generateId())->disabled(fn ($record) => $record !== null),
-                Forms\Components\DateTimePicker::make('employment_date')->format('Y-m-d H:i')->default(now())->label("Employment Date") ->disabled(fn ($record) => $record !== null),
+                Forms\Components\Select::make('user_id')->relationship('user', "client_id")->searchable()->preload()->required()->label("Client Id")->disabled(fn($record) => $record !== null)->getOptionLabelFromRecordUsing(function (User $record) {
+                    return "{$record->name} ({$record->client_id})";
+                }),
+                Forms\Components\DateTimePicker::make('employment_date')->format('Y-m-d H:i')->default(now())->label("Employment Date")->disabled(fn($record) => $record !== null),
                 Forms\Components\Toggle::make('is_admin')->default(false)->label("Is an admin?"),
             ]);
     }

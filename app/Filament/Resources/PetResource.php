@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Models\Pet;
 use Filament\Forms;
+use App\Models\User;
 use Filament\Tables;
 use Filament\Forms\Get;
 use Filament\Forms\Form;
@@ -26,12 +27,14 @@ class PetResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('file_number')->maxLength(255)->placeholder("Input File Number")->label("File Number")->default("file_" . generateId()),
-                Forms\Components\Select::make("user_id")->relationship("user", "client_id")->label("Owner ID")->searchable()->required(),
+                Forms\Components\Select::make("user_id")->relationship("user", "client_id")->label("Owner")->searchable()->getOptionLabelFromRecordUsing(function (User $record) {
+                    return "{$record->name} ({$record->client_id})";
+                })->required(),
                 Forms\Components\TextInput::make('name')->required()->maxLength(255)->placeholder("Input Name")->label("Pet Name"),
-                Forms\Components\Select::make('genus')->options(["canine", "feline", "caprine", "ovine", "equine", "bovine", "pisces", "oryctolagus"])->searchable()->required()->label("Pet Genus Name"),
+                Forms\Components\Select::make('genus')->options(["canine" =>"canine", "feline" =>"feline", "caprine" =>"caprine", "ovine" =>"ovine", "equine" =>"equine", "bovine" =>"bovine", "pisces" =>"pisces", "oryctolagus" =>"oryctolagus"])->searchable()->required()->label("Pet Genus Name"),
                 Forms\Components\TextInput::make('breed')->required()->maxLength(255)->placeholder("Input Your Pet Breed")->label("Breed and/or Species"),
-                Forms\Components\Select::make('gender')->options(["male", "female", "harmaphrodite"])->required()->label("Pet Gender"),
-                Forms\Components\Select::make('status')->options(["alive", "dead", "neutered"])->required()->label("Pet Status")->default('alive'),
+                Forms\Components\Select::make('gender')->options(["male" => "male", "female" => "female", "harmaphrodite" => "harmaphrodite"])->required()->label("Pet Gender"),
+                Forms\Components\Select::make('status')->options(["alive" => "alive", "dead" => "dead", "neutered" => "neutered"])->required()->label("Pet Status")->default('alive'),
                 Forms\Components\TextInput::make('weight')->maxLength(255)->placeholder("Input Pet Weight")->label("Pet Weight(KG)"),
                 Forms\Components\Select::make('retainership_plan')
                     ->options([
@@ -44,11 +47,13 @@ class PetResource extends Resource
                     ->required()
                     ->label('Retainership Plan')
                     ->live(),
-                    
                 Forms\Components\Textarea::make('custom_plan_details')
                     ->label('Custom Plan Details')
                     ->requiredIf('retainership_plan', "custom")
                     ->hidden(fn(Get $get): bool => $get('retainership_plan') !== "custom"),
+                Forms\Components\DateTimePicker::make('date_of_birth')->format('Y-m-d')->label("Date of Birth"),
+                Forms\Components\TextInput::make('microchip_number')->nullable()->maxLength(255)->placeholder("Input Microchip Number"),
+                Forms\Components\DateTimePicker::make('date_of_adoption')->format('Y-m-d')->default(now())->label("Date of Adoption"),
             ]);
     }
 
@@ -65,6 +70,9 @@ class PetResource extends Resource
                 Tables\Columns\TextColumn::make('weight'),
                 Tables\Columns\TextColumn::make('retainership_plan'),
                 Tables\Columns\TextColumn::make('custom_plan_details'),
+                Tables\Columns\TextColumn::make('date_of_birth'),
+                Tables\Columns\TextColumn::make('microchip_number'),
+                Tables\Columns\TextColumn::make('date_of_adoption'),
             ])
             ->filters([
                 // Tables\Columns\TextColumn::make(''),

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use Filament\Forms;
+use App\Enums\Mocks;
 use App\Models\User;
 use Filament\Tables;
 use Filament\Forms\Get;
@@ -25,6 +26,7 @@ class UserResource extends Resource
 
     public static function form(Form $form): Form
     {
+    
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required()->maxLength(255)->placeholder("Input Name"),
@@ -37,7 +39,7 @@ class UserResource extends Resource
                     })->disabled(),
                 Forms\Components\TextInput::make('email')->required()->email()->placeholder("Input Email Address"),
                 Forms\Components\TextInput::make('address')->nullable()->maxLength(255)->placeholder("Input Address"),
-                Forms\Components\TextInput::make('password')->required()->minLength(8)->password()->rules(['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/'])->default('DefaultPassword123!'),
+                Forms\Components\TextInput::make('password')->required()->minLength(8)->password()->rules(['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/'])->default(Mocks::DEFAULT_PASSWORD->value),
                 Forms\Components\TextInput::make('phone_number')->required()->tel()->label('Phone Number'),
             ]);
     }
