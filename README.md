@@ -21,6 +21,7 @@
 11. IF an employee is sacked or resigned they are unable to access their account
 12. proper text editor for text areas
 13. Admin and employee access roles
+14. create relationship manager between petResource and pet_activity_schedule then with employee and pet activity schedule to view all activity under an employee
 
 ## CODE SNIPPETS
 
@@ -44,4 +45,6 @@ default(
         return "DPW/client/" . generateId();
         
 })
+// this function might have a similar feel
+// disabled(fn ($record) => $record !== null)
 ```

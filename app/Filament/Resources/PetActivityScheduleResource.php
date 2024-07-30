@@ -29,6 +29,12 @@ class PetActivityScheduleResource extends Resource
                 // ->default(Auth::id()) // Set the default value to the currently logged-in user's ID
                 // ->label('User')
                 // ->disabled(),
+
+                // next visit date
+                // pet id
+                // employee id
+                // treatment or vaccinations
+                // report
             ]);
     }
 

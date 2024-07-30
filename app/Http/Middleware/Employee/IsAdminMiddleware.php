@@ -30,7 +30,7 @@ class IsAdminMiddleware
         | custom middleware
         |--------------------------------------------------------------------------
         */
-        if (!$user || !$user->is_admin) {
+        if (!$user) {
             return redirect()->intended(route('dashboard',parameters:["error"=>ResponseCodeEnums::INVALID_AUTHORIZATION->name], absolute: false));
         }
 
