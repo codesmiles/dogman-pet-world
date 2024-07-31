@@ -31,7 +31,21 @@ class PetActivityScheduleResource extends Resource
                     ->searchable()->preload()->required()->label("Pet")->disabled(fn($record) => $record !== null),
                 Forms\Components\DateTimePicker::make('next_visit_date')->format('Y-m-d H:i')->default(now())->label("Next Visit Date"),
                 Forms\Components\TextInput::make('treatment_or_vaccinations')->maxLength(255)->placeholder("Input Treatment or Vaccinations")->label("Treatment or Vaccinations")->required(),
-                Forms\Components\Textarea::make('report')->label('Reports')->placeholder("Input the following additional Information")
+                Forms\Components\RichEditor::make('report')->label('Reports')->placeholder("Input the following additional Information")
+                    ->toolbarButtons([
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ])
             ]);
     }
 

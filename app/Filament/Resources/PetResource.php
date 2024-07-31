@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PetResource\RelationManagers;
 use App\Filament\Resources\PetResource\RelationManagers\PetActivityScheduleRelationManager;
 
+
 class PetResource extends Resource
 {
     protected static ?string $model = Pet::class;
@@ -47,7 +48,23 @@ class PetResource extends Resource
                     ->required()
                     ->label('Retainership Plan')
                     ->live(),
-                Forms\Components\Textarea::make('custom_plan_details')
+                Forms\Components\RichEditor::make('custom_plan_details')
+                    ->toolbarButtons([
+                        // 'attachFiles',
+                        // 'codeBlock',
+                        'blockquote',
+                        'bold',
+                        'bulletList',
+                        'h2',
+                        'h3',
+                        'italic',
+                        'link',
+                        'orderedList',
+                        'redo',
+                        'strike',
+                        'underline',
+                        'undo',
+                    ])
                     ->label('Custom Plan Details')
                     ->requiredIf('retainership_plan', "custom")
                     ->hidden(fn(Get $get): bool => $get('retainership_plan') !== "custom"),

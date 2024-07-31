@@ -11,7 +11,7 @@
 1. Admin and employee access roles ✅
 2. Work on how disabled fields work ✅
 3. Admin can only register employees ✅
-4. proper text editor for text areas ✅
+4.  proper text editor for textareas ✅
 5. employees can only regeister clients ✅
 6. Some Pet fields in the tables are blank ✅
 7. formating the relation manager to do it work. ✅
@@ -28,11 +28,14 @@
 18. Implement better error handling for the admin panel UI
 19. After creating a form the field should be cleared
 20. Dummy data for admin, employees, clients,pet, and pet activities schedules
-21. Pet activity schedules relation manager for employee resource and PetResource should be implemented
+21. Implement Pet activity schedules relation manager for employee resource and PetResource
 22. Implementing Notification and mailing system between client and employees
 23. Implementing laravek database import, export and excel conversion with laravel excel
 24. Dashboard for Clients to track client activities
 25. Admin dashboard updates and revampining
+26. deploy the project
+27. male stud service sector
+28. anything involving primary id (User, pet, etc) should use UUID as primary identifier
 
 ## CODE SNIPPETS
 
