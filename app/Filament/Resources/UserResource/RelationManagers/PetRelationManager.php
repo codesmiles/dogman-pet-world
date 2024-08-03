@@ -19,7 +19,7 @@ class PetRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('file_number')->maxLength(255)->placeholder("Input File Number")->label("File Number")->default("file_" . generateId())->disabled(),
+                Forms\Components\TextInput::make('file_number')->maxLength(10)->placeholder("Input File Number")->label("File Number")->default("file_" . generateId())->readOnly(),
                 Forms\Components\Hidden::make("user_id")->label("Owner ID")->default($this->getOwnerRecord()->id)->disabled(fn($record)=>$record !== null),
                 Forms\Components\TextInput::make('name')->required()->maxLength(255)->placeholder("Input Name")->label("Pet Name"),
                 Forms\Components\Select::make('genus')->options(["canine", "feline", "caprine", "ovine", "equine", "bovine", "pisces", "oryctolagus"])->searchable()->required()->label("Pet Genus Name"),
@@ -38,7 +38,7 @@ class PetRelationManager extends RelationManager
                     ->required()
                     ->label('Retainership Plan')
                     ->live(),
-                    Forms\Components\Textarea::make('custom_plan_details')
+                Forms\Components\Textarea::make('custom_plan_details')
                     ->label('Custom Plan Details')
                     ->requiredIf('retainership_plan', "custom")
                     ->hidden(fn(Get $get): bool => $get('retainership_plan') !== "custom"),

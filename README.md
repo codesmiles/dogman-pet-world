@@ -11,8 +11,8 @@
 
 1. Admin and employee access roles ✅
 2. Work on how disabled fields work ✅
-3. Admin can only register employees ✅
-4. proper text editor for textareas ✅
+3. proper text editor for textareas ✅
+4. Admin can only register employees ✅
 5. employees can only regeister clients ✅
 6. Some Pet fields in the tables are blank ✅
 7. formating the relation manager to do it work. ✅
@@ -20,23 +20,23 @@
 9. Properly format the form fields and table fields ✅
 10. Enums for static data like default password and all ✅
 11. work on the autorizations form admin and regular models ✅
-12. the "client_id",in the user model not being input into the filament form so i will work debugging the update fields. ✅
-13. create relationship manager between petResource and PetActivitySchedule then with employee and pet activity schedule to view all activity under an employee ✅
-14. saving images and profile pictures of users and employees should be implemented
-15. employee CV and other documents of the employee to be saved on the platform.
-16. employee status field hired or resigned and once resign is clicked an employee wiil have a resignation data-table
-17. IF an employee is sacked or resigned they are unable to access their account
-18. Implement better error handling for the admin panel UI
-19. After creating a form the field should be cleared
-20. Dummy data for admin, employees, clients,pet, and pet activities schedules
-21. Implement Pet activity schedules relation manager for employee resource and PetResource
-22. Implementing Notification and mailing system between client and employees
-23. Implementing laravek database import, export and excel conversion with laravel excel
-24. Dashboard for Clients to track client activities
-25. Admin dashboard updates and revampining
-26. deploy the project
-27. male stud service sector
-28. anything involving primary id (User, pet, etc) should use UUID as primary identifier
+12. anything involving primary id (User, pet, etc) should use UUID as primary identifier ✅
+13. the "client_id",in the user model not being input into the filament form so i will work debugging the update fields. ✅
+14. create relationship manager between petResource and PetActivitySchedule then with employee and pet activity schedule to view all activity under an employee ✅
+15. saving images and profile pictures of users and employees should be implemented
+16. employee CV and other documents of the employee to be saved on the platform.
+17. employee status field hired or resigned and once resign is clicked an employee wiil have a resignation data-table
+18. IF an employee is sacked or resigned they are unable to access their account
+19. Implement better error handling for the admin panel UI
+20. After creating a form the field should be cleared
+21. Dummy data for admin, employees, clients,pet, and pet activities schedules
+22. Implement Pet activity schedules relation manager for employee resource and PetResource
+23. Implementing Notification and mailing system between client and employees
+24. Implementing laravek database import, export and excel conversion with laravel excel
+25. Dashboard for Clients to track client activities
+26. Admin dashboard updates and revampining
+27. deploy the project
+28. male stud service sector
 
 ## CODE SNIPPETS
 
@@ -82,9 +82,19 @@ default(
     ```
 
 5. set a field to ReadOnly
-    
+
     ```php
         Forms\Components\TextInput::make('file_number')->readOnly()
+    ```
+
+6. filament handle record creation used to debug incase there's error in saving data.
+
+    ```php
+           protected function handleRecordCreation(array $data): Model
+    {
+        $data["employee_id"] = "DPW/employee/";
+        return static::getModel()::create($data);
+    }
     ```
 
 ## Note

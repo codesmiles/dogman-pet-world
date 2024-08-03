@@ -1,0 +1,19 @@
+<?php
+namespace App\Filament\Resources\EmployeeResource\Resource;
+
+
+use App\Filament\Resources\EmployeeResource;
+use Filament\Tables\Actions\DeleteBulkAction;
+
+class CustomEmployeeResource extends EmployeeResource
+{
+    public function getActions(): array
+    {
+        $actions = parent::getActions();
+        if (!auth()->user()->employee->is_admin) {
+            unset($actions[DeleteBulkAction::class]); // Remove the DeleteBulkAction
+        }
+
+        return $actions;
+    }
+}

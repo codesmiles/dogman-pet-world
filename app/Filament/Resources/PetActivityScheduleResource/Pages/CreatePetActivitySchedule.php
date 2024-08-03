@@ -16,4 +16,9 @@ class CreatePetActivitySchedule extends CreateRecord
         $data["employee_id"] = auth()->user()->employee->id;
         return static::getModel()::create($data);
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

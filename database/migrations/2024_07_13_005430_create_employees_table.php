@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("employee_id");
             $table->dateTime("employment_date")->default(now()->toDateTimeString());
             $table->boolean('is_admin')->default(false);
-            $table->foreignUuid('user_id')->constrained();
+            $table->foreignUuid('user_id')->unique()->constrained();
             $table->timestamps();
         });
     }

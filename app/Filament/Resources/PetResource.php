@@ -52,7 +52,6 @@ class PetResource extends Resource
                 Forms\Components\RichEditor::make('custom_plan_details')
                     ->toolbarButtons([
                         // 'attachFiles',
-                        // 'codeBlock',
                         'blockquote',
                         'bold',
                         'bulletList',

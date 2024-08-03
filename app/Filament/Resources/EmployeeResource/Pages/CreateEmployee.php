@@ -11,9 +11,8 @@ class CreateEmployee extends CreateRecord
 {
     protected static string $resource = EmployeeResource::class;
 
-    protected function handleRecordCreation(array $data): Model
+    protected function getRedirectUrl(): string
     {
-        $data["employee_id"] = "DPW/employee/" . generateId();
-        return static::getModel()::create($data);
+        return $this->getResource()::getUrl('index');
     }
 }

@@ -11,9 +11,8 @@ class CreatePet extends CreateRecord
 {
     protected static string $resource = PetResource::class;
 
-    // protected function handleRecordCreation(array $data): Model
-    // {
-    //     dd($data);
-    //     return static::getModel()::create($data);
-    // }
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

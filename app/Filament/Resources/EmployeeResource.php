@@ -28,6 +28,7 @@ class EmployeeResource extends Resource
                 Forms\Components\Select::make('user_id')->relationship('user', "client_id")->searchable()->preload()->required()->label("Client Id")->disabled(fn($record) => $record !== null)->getOptionLabelFromRecordUsing(function (User $record) {
                     return "{$record->name} ({$record->client_id})";
                 }),
+                Forms\Components\TextInput::make("employee_id")->default("DPW/employee/" . generateId())->readOnly(),
                 Forms\Components\DateTimePicker::make('employment_date')->format('Y-m-d H:i')->default(now())->label("Employment Date")->disabled(fn($record) => $record !== null),
                 Forms\Components\Toggle::make('is_admin')->default(false)->label("Is an admin?"),
             ]);
@@ -52,6 +53,7 @@ class EmployeeResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+
                 ]),
             ]);
     }

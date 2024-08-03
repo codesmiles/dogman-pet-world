@@ -29,7 +29,10 @@ class PetActivityScheduleRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('employee_id')
             ->columns([
-                Tables\Columns\TextColumn::make('employee_id'),
+                Tables\Columns\TextColumn::make('pet_id')->label("Pet Name (owner_client_id)")->formatStateUsing(fn($record) => "{$record->pet->name} ({$record->pet->user->client_id})"),
+                Tables\Columns\TextColumn::make('next_visit_date'),
+                Tables\Columns\TextColumn::make('treatment_or_vaccinations'),
+                Tables\Columns\TextColumn::make('report'),
             ])
             ->filters([
                 //

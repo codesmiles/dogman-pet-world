@@ -53,7 +53,7 @@ class PetActivityScheduleResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('pet_id'),
+                Tables\Columns\TextColumn::make('pet_id')->label("Pet Name (owner_client_id)")->formatStateUsing(fn($record) =>"{$record->pet->name} ({$record->pet->user->client_id})"),
                 Tables\Columns\TextColumn::make('next_visit_date'),
                 Tables\Columns\TextColumn::make('treatment_or_vaccinations'),
                 Tables\Columns\TextColumn::make('report'),

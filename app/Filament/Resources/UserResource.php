@@ -26,17 +26,17 @@ class UserResource extends Resource
 
     public static function form(Form $form): Form
     {
-    
+
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required()->maxLength(255)->placeholder("Input Name"),
-                Forms\Components\TextInput::make('client_id')->required()->maxLength(255)->default(
+                Forms\Components\TextInput::make('client_id')->required()->maxLength(20)->default(
                     function (?User $record, Get $get, Set $set) {
                         if (!empty($record) && empty($get('client_id'))) {
                             $set('client_id', $record->client_id);
                         }
                         return "DPW/client/" . generateId();
-                    })->disabled(),
+                    })->readOnly(),
                 Forms\Components\TextInput::make('email')->required()->email()->placeholder("Input Email Address"),
                 Forms\Components\TextInput::make('address')->nullable()->maxLength(255)->placeholder("Input Address"),
                 Forms\Components\TextInput::make('password')->required()->minLength(8)->password()->rules(['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/'])->default(Mocks::DEFAULT_PASSWORD->value),

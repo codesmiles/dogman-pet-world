@@ -13,7 +13,7 @@ class EmployeePolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->employee === auth()->user()->employee;
     }
 
     /**
@@ -21,7 +21,7 @@ class EmployeePolicy
      */
     public function view(User $user, Employee $employee): bool
     {
-        return true;
+        return $user->employee === auth()->user()->employee;
     }
 
     /**
@@ -46,7 +46,7 @@ class EmployeePolicy
      */
     public function delete(User $user, Employee $employee): bool
     {
-        return auth()->user()->employee->is_admin;
+        return $employee->is_admin;
     }
 
     /**
@@ -54,7 +54,7 @@ class EmployeePolicy
      */
     public function restore(User $user, Employee $employee): bool
     {
-        //
+        return $employee->is_admin;
     }
 
     /**
@@ -62,6 +62,11 @@ class EmployeePolicy
      */
     public function forceDelete(User $user, Employee $employee): bool
     {
-        //
+        return $employee->is_admin;
+    }
+
+    public function deleteAny(User $user): bool
+    {
+        return $user->employee->is_admin;
     }
 }

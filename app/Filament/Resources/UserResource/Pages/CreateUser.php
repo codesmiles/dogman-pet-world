@@ -17,4 +17,9 @@ class CreateUser extends CreateRecord
         $data["client_id"] = "DPW/client/".generateId();
         return static::getModel()::create($data);
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
