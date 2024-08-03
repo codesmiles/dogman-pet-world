@@ -20,19 +20,21 @@
 9. Properly format the form fields and table fields ✅
 10. Enums for static data like default password and all ✅
 11. work on the autorizations form admin and regular models ✅
-12. anything involving primary id (User, pet, etc) should use UUID as primary identifier ✅
-13. the "client_id",in the user model not being input into the filament form so i will work debugging the update fields. ✅
-14. create relationship manager between petResource and PetActivitySchedule then with employee and pet activity schedule to view all activity under an employee ✅
-15. saving images and profile pictures of users and employees should be implemented
-16. employee CV and other documents of the employee to be saved on the platform.
-17. employee status field hired or resigned and once resign is clicked an employee wiil have a resignation data-table
-18. IF an employee is sacked or resigned they are unable to access their account
-19. Implement better error handling for the admin panel UI
-20. After creating a form the field should be cleared
-21. Dummy data for admin, employees, clients,pet, and pet activities schedules
-22. Implement Pet activity schedules relation manager for employee resource and PetResource
+12. Dummy data for admin, employees, clients,pet, and pet activities schedules ✅
+13. After creating a form the field should be cleared and redirected to the main list ✅
+14. anything involving primary id (User, pet, etc) should use UUID as primary identifier ✅
+15. Implement Pet activity schedules relation manager for employee resource and PetResource ✅
+16. the "client_id",in the user model not being input into the filament form so i will work debugging the update fields. ✅
+17. create relationship manager between petResource and PetActivitySchedule then with employee and pet activity schedule to view all activity under an employee ✅
+18. saving images and profile pictures of users and employees should be implemented
+19. employee CV and other documents of the employee to be saved on the platform.
+20. employee status field hired or resigned and once resign is clicked an employee wiil have a resignation data-table
+21. IF an employee is sacked or resigned they are unable to access their account
+    1. deactivate or resign schema role
+    2. attack the schema with a middleware to monitor sacked or deactivated
+22. Implement better error handling for the admin panel UI
 23. Implementing Notification and mailing system between client and employees
-24. Implementing laravek database import, export and excel conversion with laravel excel
+24. Implementing laravel database import, export and excel conversion with laravel excel
 25. Dashboard for Clients to track client activities
 26. Admin dashboard updates and revampining
 27. deploy the project
