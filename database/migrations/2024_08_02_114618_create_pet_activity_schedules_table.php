@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pet_activity_schedules', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->dateTime("next_visit_date")->nullable();
-            $table->unsignedBigInteger("pet_id");
-            $table->foreign("pet_id")->references('id')->on("pets")->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger("employee_id");
-            $table->foreign("employee_id")->references('id')->on("employees")->onDelete('cascade')->onUpdate('cascade');
-            $table->string("treatment_or_vaccinations");
+            $table->foreignUuid('pet_id')->constrained();
+            $table->foreignUuid('employee_id')->constrained();
+            $table->string("treatment_or_vaccinations")->nullable();
             $table->string("report")->nullable();
             $table->timestamps(); // will work as the current date
+
+
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pet_activity_schedule');
+        Schema::dropIfExists('pet_activity_schedules');
     }
 };

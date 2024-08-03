@@ -25,9 +25,10 @@ class PetResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $generate_file_number = "file_" . generateId();
         return $form
             ->schema([
-                Forms\Components\TextInput::make('file_number')->maxLength(255)->placeholder("Input File Number")->label("File Number")->default("file_" . generateId()),
+                Forms\Components\TextInput::make('file_number')->maxLength(255)->placeholder("Input File Number")->label("File Number")->default($generate_file_number)->readOnly()->disabledOn('edit'),
                 Forms\Components\Select::make("user_id")->relationship("user", "client_id")->label("Owner")->searchable()->getOptionLabelFromRecordUsing(function (User $record) {
                     return "{$record->name} ({$record->client_id})";
                 })->required(),
@@ -36,7 +37,7 @@ class PetResource extends Resource
                 Forms\Components\TextInput::make('breed')->required()->maxLength(255)->placeholder("Input Your Pet Breed")->label("Breed and/or Species"),
                 Forms\Components\Select::make('gender')->options(["male" => "male", "female" => "female", "harmaphrodite" => "harmaphrodite"])->required()->label("Pet Gender"),
                 Forms\Components\Select::make('status')->options(["alive" => "alive", "dead" => "dead", "neutered" => "neutered"])->required()->label("Pet Status")->default('alive'),
-                Forms\Components\TextInput::make('weight')->maxLength(255)->placeholder("Input Pet Weight")->label("Pet Weight(KG)"),
+                Forms\Components\TextInput::make('weight')->numeric()->maxLength(255)->placeholder("Input Pet Weight")->label("Pet Weight(KG)"),
                 Forms\Components\Select::make('retainership_plan')
                     ->options([
                         'bronze' => 'Bronze',

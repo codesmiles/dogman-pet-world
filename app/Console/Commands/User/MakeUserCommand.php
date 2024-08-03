@@ -75,7 +75,7 @@ class MakeUserCommand extends Command
             'email' => $data['email'],
             'address' => $data['address'],
             'password' => Hash::make($data['password']),
-            "client_id"=> "DPW/client/admin",
+            "client_id" => "DPW/client/admin",
             'phone_number' => $data['phone_number'],
         ];
 
@@ -115,7 +115,6 @@ class MakeUserCommand extends Command
             $this->error('Admin User creation failed due to database error.');
             return;
         }
-
         $this->info('Admin user created successfully!');
     }
 
@@ -127,7 +126,6 @@ class MakeUserCommand extends Command
             "address" => $this->ask('Input Your Address:'),
             'password' => $this->secret('Input User Password*:'),
             "phone_number" => $this->ask('Input your phone number*:')
-
         ];
     }
 }

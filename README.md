@@ -2,16 +2,17 @@
 
 ## Commands
 
-- ```sail artisan create:admin-user``` -> Create a new Filament custom admin user user custom
-- ```alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'``` -> command for configuring shell alias from ```./vendor/bin/sail``` to ```sail up```
-- ```php artisan make:filament-relation-manager ClientResource Employee user_id``` -> command for relating  UserResource to Employee
+- Create a new Filament custom admin user user custom -> ```sail artisan create:admin-user```
+- command for configuring shell alias from ```./vendor/bin/sail``` to ```sail up``` -> ```alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'```
+- command for relating  UserResource to Employee -> ```php artisan make:filament-relation-manager ClientResource Employee user_id```
+- Accessing mysql shell command -> ```sh mysql -u root -p```
 
 ## TO DO List
 
 1. Admin and employee access roles ✅
 2. Work on how disabled fields work ✅
 3. Admin can only register employees ✅
-4.  proper text editor for textareas ✅
+4. proper text editor for textareas ✅
 5. employees can only regeister clients ✅
 6. Some Pet fields in the tables are blank ✅
 7. formating the relation manager to do it work. ✅
@@ -19,9 +20,9 @@
 9. Properly format the form fields and table fields ✅
 10. Enums for static data like default password and all ✅
 11. work on the autorizations form admin and regular models ✅
-12. create relationship manager between petResource and pet_activity_schedule then with employee and pet activity schedule to view all activity under an employee ✅
-13. saving images and profile pictures of users and employees should be implemented
-14. the "client_id",in the user model not being input into the filament form so i will work debugging the update fields.
+12. the "client_id",in the user model not being input into the filament form so i will work debugging the update fields. ✅
+13. create relationship manager between petResource and PetActivitySchedule then with employee and pet activity schedule to view all activity under an employee ✅
+14. saving images and profile pictures of users and employees should be implemented
 15. employee CV and other documents of the employee to be saved on the platform.
 16. employee status field hired or resigned and once resign is clicked an employee wiil have a resignation data-table
 17. IF an employee is sacked or resigned they are unable to access their account
@@ -72,5 +73,18 @@ default(
         return "{$record->name} ({$record->breed} | {$record->user->client_id})";
     })
    ```
+
+4. Adding uuid to fields id
+
+    ```php
+        $new_user = new User();
+        $new_user->id = Str::uuid();
+    ```
+
+5. set a field to ReadOnly
+    
+    ```php
+        Forms\Components\TextInput::make('file_number')->readOnly()
+    ```
 
 ## Note

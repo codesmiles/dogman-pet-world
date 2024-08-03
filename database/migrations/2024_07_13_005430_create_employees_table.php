@@ -12,12 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string("employee_id");
             $table->dateTime("employment_date")->default(now()->toDateTimeString());
             $table->boolean('is_admin')->default(false);
-            $table->unsignedBigInteger('user_id')->unique('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate("cascade")->onDelete('cascade');
+            $table->foreignUuid('user_id')->constrained();
             $table->timestamps();
         });
     }

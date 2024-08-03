@@ -2,14 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pet extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
+
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    public static function booted()
+    {
+        static::creating(function ($model) {
+            if (empty($model->id)) {
+                $model->id = Str::uuid()->toString();
+            }
+        });
+    }
     protected $fillable = [
         "name",
         "breed",
@@ -18,20 +32,26 @@ class Pet extends Model
         "weight",
         "gender",
         "status",
-        "species",
         "user_id",
         "file_number",
         "date_of_birth",
         "microchip_number",
         "date_of_adoption",
         "retainership_plan",
+        "custom_plan_details"
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function pet_activity_schedules(){
-        return $this->hasMany(pet_activity_schedule::class);
+    public function PetActivitySchedules()
+    {
+        return $this->hasMany(PetActivitySchedule::class);
     }
 }
+
+
+
+

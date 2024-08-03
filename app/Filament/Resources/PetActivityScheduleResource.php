@@ -9,7 +9,7 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
-use App\Models\pet_activity_schedule;
+use App\Models\PetActivitySchedule;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PetActivityScheduleResource\Pages;
@@ -17,7 +17,7 @@ use App\Filament\Resources\PetActivityScheduleResource\RelationManagers;
 
 class PetActivityScheduleResource extends Resource
 {
-    protected static ?string $model = pet_activity_schedule::class;
+    protected static ?string $model = PetActivitySchedule::class;
     protected static ?string $label = "Pet Activity Schedule";
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

@@ -29,7 +29,6 @@ class EmployeeRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('user_id')
             ->columns([
-                Tables\Columns\TextColumn::make('user_id'),
                 Tables\Columns\TextColumn::make('employee_id'),
                 Tables\Columns\TextColumn::make('employment_date'),
                 Tables\Columns\IconColumn::make('is_admin')->boolean(),

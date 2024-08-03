@@ -7,17 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Employee extends Model
+class PetActivitySchedule extends Model
 {
     use HasFactory, HasUuids;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $keyType = 'string';
     public $incrementing = false;
+    protected $table = 'pet_activity_schedules';
 
     public static function booted()
     {
@@ -28,21 +24,17 @@ class Employee extends Model
         });
     }
     protected $fillable = [
-        "user_id",
-        "is_admin",
+        "report",
+        "pet_id",
         "employee_id",
-        "employment_date",
-
+        "next_visit_date",
+        "treatment_or_vaccinations",
     ];
 
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+    public function pet(){
+        return $this->belongsTo(Pet::class);
     }
-
-    public function PetActivitySchedules()
-    {
-        return $this->hasMany(PetActivitySchedule::class);
+    public function employee(){
+        return $this->belongsTo(Employee::class);
     }
 }

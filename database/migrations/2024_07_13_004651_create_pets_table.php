@@ -12,22 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pets', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->string('breed');
             $table->string('photo')->nullable();
-            $table->char('microchip_number', 10)->nullable();
-            $table->dateTime('date_of_birth')->nullable();
+            $table->enum('genus', ["canine", "feline", "caprine", "ovine", "equine", "bovine", "pisces", "oryctolagus"]);
             $table->unsignedInteger('weight')->nullable();
-            $table->dateTime('date_of_adoption')->nullable();
             $table->enum('gender', ["male", "female", "harmaphrodite"]);
             $table->enum('status', ["alive", "dead", "neutered"])->default("alive");
+            $table->foreignUuid('user_id')->constrained();
+            $table->string('file_number')->nullable();
+            $table->dateTime('date_of_birth')->nullable();
+            $table->char('microchip_number', 10)->nullable();
+            $table->dateTime('date_of_adoption')->nullable();
             $table->enum('retainership_plan', ["bronze", "silver","gold", "custom","none"])->nullable();
             $table->string('custom_plan_details')->nullable();
-            $table->enum('genus', ["canine", "feline", "caprine", "ovine", "equine", "bovine", "pisces", "oryctolagus"]);
-            $table->unsignedBigInteger('user_id');
-            $table->foreign("user_id")->references('id')->on("users")->onDelete('cascade');
-            $table->string('file_number')->nullable();
             $table->timestamps();
         });
     }
