@@ -30,7 +30,7 @@
 19. employee CV and other documents of the employee to be saved on the platform.
 20. employee status field hired or resigned and once resign is clicked an employee wiil have a resignation data-table
 21. IF an employee is sacked or resigned they are unable to access their account
-    1. deactivate or resign schema role
+    1. deactivate or resign schema role through status in employee table
     2. attack the schema with a middleware to monitor sacked or deactivated
 22. Implement better error handling for the admin panel UI
 23. Implementing Notification and mailing system between client and employees
