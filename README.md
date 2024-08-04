@@ -39,6 +39,8 @@
 26. Admin dashboard updates and revampining
 27. deploy the project
 28. male stud service sector
+29. mailin and notifications for admin
+30. implement file upload with cloudinary 
 
 ## CODE SNIPPETS
 
