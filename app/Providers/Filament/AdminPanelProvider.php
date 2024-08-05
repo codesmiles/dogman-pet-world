@@ -28,7 +28,7 @@ use App\Filament\Resources\{
 | custom middleware
 |--------------------------------------------------------------------------
 */
-use App\Http\Middleware\Employee\IsAdminMiddleware;
+use App\Http\Middleware\Employee\IsEmployeeMiddleware;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -65,7 +65,7 @@ class AdminPanelProvider extends PanelProvider
                 ])
                 ->authMiddleware([
                     Authenticate::class,
-                    IsAdminMiddleware::class,
+                    IsEmployeeMiddleware::class,
             ]);
     }
 }

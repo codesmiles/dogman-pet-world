@@ -26,21 +26,25 @@
 15. Implement Pet activity schedules relation manager for employee resource and PetResource ✅
 16. the "client_id",in the user model not being input into the filament form so i will work debugging the update fields. ✅
 17. create relationship manager between petResource and PetActivitySchedule then with employee and pet activity schedule to view all activity under an employee ✅
-18. saving images and profile pictures of users and employees should be implemented
-19. employee CV and other documents of the employee to be saved on the platform.
-20. employee status field hired or resigned and once resign is clicked an employee wiil have a resignation data-table
-21. IF an employee is sacked or resigned they are unable to access their account
-    1. deactivate or resign schema role through status in employee table
-    2. attack the schema with a middleware to monitor sacked or deactivated
-22. Implement better error handling for the admin panel UI
-23. Implementing Notification and mailing system between client and employees
-24. Implementing laravel database import, export and excel conversion with laravel excel
-25. Dashboard for Clients to track client activities
-26. Admin dashboard updates and revampining
-27. deploy the project
-28. male stud service sector
-29. mailin and notifications for admin
-30. implement file upload with cloudinary 
+18. saving images, profile pictures and cv documents of users and employees should be implemented
+    1. image upload with filament
+    2. file upload with filament(CV)
+    3. avatar display for images
+    4. implement file upload with cloudinary
+    5. employee CV and other documents of the employee to be saved on the platform.
+19. employee status field hired or resigned and once resign is clicked an employee wiil have a resignation data-table
+20. IF an employee is sacked or resigned they are unable to access their account
+    1. deactivate or resign schema role through status in employee tableth a mid
+    2. attack the schema widleware to monitor sacked or deactivated
+21. Implement better error handling for the admin panel UI
+22. Implementing Notification and mailing system between client and employees
+23. Implementing laravel database import, export and excel conversion with laravel excel
+24. Dashboard for Clients to track client activities
+25. Admin dashboard updates and revampining
+26. deploy the project
+27. male stud service sector
+28. mailin and notifications for admin
+29. apointment booking system
 
 ## CODE SNIPPETS
 

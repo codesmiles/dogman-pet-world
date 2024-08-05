@@ -68,6 +68,7 @@ class MakeSeederCommand extends Command
         |--------------------------------------------------------------------------
         */
         $employee_payload = [
+            "status" => Mocks::EMPLOYEE_STATUS->value,
             "user_id" => $user_admin_created->id,
             "is_admin" => true,
             "employee_id" => Mocks::ADMIN_EMPLOYEE_ID->value,

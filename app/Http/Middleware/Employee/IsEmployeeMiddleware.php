@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Enums\ResponseCodeEnums;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsAdminMiddleware
+class IsEmployeeMiddleware
 {
     /**
      * Handle an incoming request.
@@ -23,14 +23,14 @@ class IsAdminMiddleware
         | find user employee data
         |--------------------------------------------------------------------------
         */
-        $user = User::find($request->user()->id)->employee;
+        $user = User::find($request->user()->id)->employee->status;
 
         /*
         |--------------------------------------------------------------------------
         | custom middleware
         |--------------------------------------------------------------------------
         */
-        if (!$user) {
+        if ($user !== "active") {
             return redirect()->intended(route('dashboard',parameters:["error"=>ResponseCodeEnums::INVALID_AUTHORIZATION->name], absolute: false));
         }
 

@@ -28,6 +28,7 @@ class Employee extends Model
         });
     }
     protected $fillable = [
+        "status",
         "user_id",
         "is_admin",
         "employee_id",

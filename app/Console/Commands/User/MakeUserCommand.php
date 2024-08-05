@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\User;
 
+use App\Enums\Mocks;
 use App\Models\User;
 use App\Models\Employee;
 use Illuminate\Console\Command;
@@ -98,6 +99,7 @@ class MakeUserCommand extends Command
         |--------------------------------------------------------------------------
         */
         $employee_payload = [
+            "status" => Mocks::EMPLOYEE_STATUS->value,
             "user_id" =>$user_created->id,
             "is_admin" => true,
             "employee_id" => "DPW/employee/admin",

@@ -34,6 +34,9 @@ enum Mocks: string
 
     case PET_ACTIVITY_REPORT = "Temperature";
     case PET_ACTVITY_TREATMENT_OR_VACCINATIONS = "antirabies vaccinations";
+
+    case EMPLOYEE_STATUS = "active";
+    case EMPLOYEE_IS_ADMIN =
 }
 
 
@@ -41,3 +44,5 @@ enum IntMock:int
 {
     case PET_WEIGHT = 10;
 }
+
+
