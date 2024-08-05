@@ -32,19 +32,20 @@
     3. avatar display for images
     4. implement file upload with cloudinary
     5. employee CV and other documents of the employee to be saved on the platform.
-19. employee status field hired or resigned and once resign is clicked an employee wiil have a resignation data-table
-20. IF an employee is sacked or resigned they are unable to access their account
-    1. deactivate or resign schema role through status in employee tableth a mid
-    2. attack the schema widleware to monitor sacked or deactivated
-21. Implement better error handling for the admin panel UI
-22. Implementing Notification and mailing system between client and employees
-23. Implementing laravel database import, export and excel conversion with laravel excel
-24. Dashboard for Clients to track client activities
-25. Admin dashboard updates and revampining
-26. deploy the project
-27. male stud service sector
-28. mailin and notifications for admin
-29. apointment booking system
+19. IF an employee is sacked or resigned they are unable to access their account
+    1. attack the schema widleware to monitor sacked or deactivated
+    2. employee status field hired or resigned and once resign is clicked an employee wiil have a resignation data-table
+20. Implement better error handling for the admin panel UI
+21. Implementing Notification and mailing system between client and employees
+22. Implementing laravel database import, export and excel conversion with laravel excel
+23. Dashboard for Clients to track client activities
+24. Admin dashboard updates and revampining
+25. deploy the project
+26. male stud service sector
+27. mailing and notifications for admin
+28. apointment booking system
+29. Inventory management system
+30. Test Employee status feature and the new IsEmployee middleware with the status active and not
 
 ## CODE SNIPPETS
 
