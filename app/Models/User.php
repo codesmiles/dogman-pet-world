@@ -17,7 +17,7 @@ class User extends Authenticatable
 
     protected $keyType = 'string';
     // protected $keyType = 'uuid';
-    
+
     public $incrementing = false;
 
     protected $primaryKey = 'id';
@@ -43,7 +43,8 @@ class User extends Authenticatable
         'password',
         "client_id",
         "role_title",
-        "phone_number"
+        "phone_number",
+        'profile_picture',
     ];
 
     /**

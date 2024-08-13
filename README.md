@@ -24,28 +24,33 @@
 13. After creating a form the field should be cleared and redirected to the main list ✅
 14. anything involving primary id (User, pet, etc) should use UUID as primary identifier ✅
 15. Implement Pet activity schedules relation manager for employee resource and PetResource ✅
-16. the "client_id",in the user model not being input into the filament form so i will work debugging the update fields. ✅
-17. create relationship manager between petResource and PetActivitySchedule then with employee and pet activity schedule to view all activity under an employee ✅
-18. saving images, profile pictures and cv documents of users and employees should be implemented
-    1. image upload with filament
-    2. file upload with filament(CV)
-    3. avatar display for images
-    4. implement file upload with cloudinary
-    5. employee CV and other documents of the employee to be saved on the platform.
-19. IF an employee is sacked or resigned they are unable to access their account
+16. Test Employee status feature and the new IsEmployee middleware with the status active and not✅
+17. saving images, profile pictures and cv documents of users and employees should be implemented✅
+18. the "client_id",in the user model not being input into the filament form so i will work debugging the update fields. ✅
+19. create relationship manager between petResource and PetActivitySchedule then with employee and pet activity schedule to view all activity under an employee ✅
+    1. image upload with filament✅
+    2. file upload with filament(CV)✅
+    3. remove cloudinary/cloudinary_php✅
+    4. implement file upload with cloudinary✅
+    5. employee CV and other documents of the employee to be saved on cloudinary.✅
+    6. display avatar for images
+    7. make sure view resume upload works
+20. IF an employee is sacked or resigned they are unable to access their account
     1. attack the schema widleware to monitor sacked or deactivated
     2. employee status field hired or resigned and once resign is clicked an employee wiil have a resignation data-table
-20. Implement better error handling for the admin panel UI
-21. Implementing Notification and mailing system between client and employees
-22. Implementing laravel database import, export and excel conversion with laravel excel
-23. Dashboard for Clients to track client activities
-24. Admin dashboard updates and revampining
-25. deploy the project
-26. male stud service sector
-27. mailing and notifications for admin
-28. apointment booking system
-29. Inventory management system
-30. Test Employee status feature and the new IsEmployee middleware with the status active and not
+21. Implement better error handling for the admin panel UI
+22. Upload many certifications and documentation for employees
+23. Implementing Notification and mailing system between client and employees
+24. Implementing laravel database import, export and excel conversion with laravel excel
+25. Dashboard for Clients to track client activities
+26. Admin dashboard updates and revampining
+27. deploy the project
+28. male stud service sector
+29. mailing and notifications for admin
+30. apointment booking system
+31. Inventory management system
+32. Employee view profile page and edit some features
+33. make sure pet profile profile picture is working
 
 ## CODE SNIPPETS
 
@@ -105,5 +110,17 @@ default(
         return static::getModel()::create($data);
     }
     ```
+
+7. Get the url of a cludinary picture ->  
+8. ```php 
+   Get$cloudinaryUrl = cloudinary()->getUrl($filePath)
+   ``` 
+
+   or using the method in the table
+   
+   ```php
+      ImageColumn::make('profile_picture')
+                ->url(fn ($record) => cloudinary()->getUrl($record->profile_picture))
+   ```
 
 ## Note

@@ -28,6 +28,7 @@ class Employee extends Model
         });
     }
     protected $fillable = [
+        "resume",
         "status",
         "user_id",
         "is_admin",

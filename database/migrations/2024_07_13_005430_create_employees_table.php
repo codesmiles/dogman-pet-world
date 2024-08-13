@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string("employee_id");
+            $table->string("resume");
             $table->enum("status", ["active", "inactive"]);
             $table->dateTime("employment_date")->default(now()->toDateTimeString());
             $table->boolean('is_admin')->default(false);

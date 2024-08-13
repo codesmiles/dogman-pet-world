@@ -11,6 +11,7 @@ use Filament\Forms\Set;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use App\Forms\Components\CustomFileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -29,14 +30,25 @@ class UserResource extends Resource
 
         return $form
             ->schema([
+            Forms\Components\FileUpload::make('profile_picture')
+                    ->image()
+                    ->avatar()
+                    ->imageEditor()
+                    ->circleCropper()
+                    ->disk("cloudinary")
+                    ->directory("assets/user/profile_pictures")
+                    ->imageResizeMode('cover')
+                    ->imageEditorEmptyFillColor('#ff0000')
+                    ->uploadingMessage('Uploading Profile picture...')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png',])
+                    ->maxSize(2048),
+                    // ->preserveFilenames()
+                    // ->storeFileNamesIn('attachment_file_names')
+                    // ->imageEditorViewportWidth('1920')
+                    // ->imageEditorViewportHeight('1080')
+                    // ->imageEditorAspectRatios(['16:9','4:3','1:1',]),
                 Forms\Components\TextInput::make('name')->required()->maxLength(255)->placeholder("Input Name"),
-                Forms\Components\TextInput::make('client_id')->required()->maxLength(20)->default(
-                    function (?User $record, Get $get, Set $set) {
-                        if (!empty($record) && empty($get('client_id'))) {
-                            $set('client_id', $record->client_id);
-                        }
-                        return "DPW/client/" . generateId();
-                    })->readOnly(),
+                Forms\Components\TextInput::make('client_id')->required()->maxLength(20)->default("DPW/client/" . generateId())->readOnly(),
                 Forms\Components\TextInput::make('email')->required()->email()->placeholder("Input Email Address"),
                 Forms\Components\TextInput::make('address')->nullable()->maxLength(255)->placeholder("Input Address"),
                 Forms\Components\TextInput::make('password')->required()->minLength(8)->password()->rules(['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/'])->default(Mocks::DEFAULT_PASSWORD->value),
@@ -48,6 +60,7 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('profile_picture')->disk('cloudinary')->width(100)->height(100),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('client_id'),
                 Tables\Columns\TextColumn::make('email'),
