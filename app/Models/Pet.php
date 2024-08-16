@@ -52,7 +52,3 @@ class Pet extends Model
         return $this->hasMany(PetActivitySchedule::class);
     }
 }
-
-
-
-
