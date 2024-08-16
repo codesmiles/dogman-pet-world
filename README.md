@@ -51,6 +51,7 @@
 31. Inventory management system
 32. Employee view profile page and edit some features
 33. make sure pet profile profile picture is working
+34. Remove Tobi Adebisi from my repo
 
 ## CODE SNIPPETS
 

@@ -28,6 +28,7 @@ class PetResource extends Resource
         $generate_file_number = "file_" . generateId();
         return $form
             ->schema([
+                Forms\Components\FileUpload::make('pet_picture')->avatar(),
                 Forms\Components\TextInput::make('file_number')->maxLength(255)->placeholder("Input File Number")->label("File Number")->default($generate_file_number)->readOnly()->disabledOn('edit'),
                 Forms\Components\Select::make("user_id")->relationship("user", "client_id")->label("Owner")->searchable()->getOptionLabelFromRecordUsing(function (User $record) {
                     return "{$record->name} ({$record->client_id})";

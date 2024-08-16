@@ -25,6 +25,7 @@ class Pet extends Model
         });
     }
     protected $fillable = [
+        "age",
         "name",
         "breed",
         "photo",

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->dateTime('date_of_adoption')->nullable();
             $table->enum('retainership_plan', ["bronze", "silver","gold", "custom","none"])->nullable();
             $table->string('custom_plan_details')->nullable();
+            $table->string("age")->nullable();
             $table->timestamps();
         });
     }

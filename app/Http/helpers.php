@@ -7,3 +7,8 @@ function generateId()
 
     return $value;
 }
+
+function fetchImageUrl(string $path, array $options = [])
+{
+    return cloudinary()->getUrl($path, $options);
+}
