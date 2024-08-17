@@ -20,38 +20,39 @@
 9. Properly format the form fields and table fields ✅
 10. Enums for static data like default password and all ✅
 11. work on the autorizations form admin and regular models ✅
-12. Dummy data for admin, employees, clients,pet, and pet activities schedules ✅
-13. After creating a form the field should be cleared and redirected to the main list ✅
-14. anything involving primary id (User, pet, etc) should use UUID as primary identifier ✅
-15. Implement Pet activity schedules relation manager for employee resource and PetResource ✅
-16. Test Employee status feature and the new IsEmployee middleware with the status active and not✅
-17. saving images, profile pictures and cv documents of users and employees should be implemented✅
-18. the "client_id",in the user model not being input into the filament form so i will work debugging the update fields. ✅
-19. create relationship manager between petResource and PetActivitySchedule then with employee and pet activity schedule to view all activity under an employee ✅
-    1. image upload with filament✅
-    2. file upload with filament(CV)✅
-    3. remove cloudinary/cloudinary_php✅
-    4. implement file upload with cloudinary✅
-    5. employee CV and other documents of the employee to be saved on cloudinary.✅
-    6. display avatar for images
+12. Implement factories and seeders for client, employee and admin users.✅
+13. Dummy data for admin, employees, clients,pet, and pet activities schedules ✅
+14. After creating a form the field should be cleared and redirected to the main list ✅
+15. anything involving primary id (User, pet, etc) should use UUID as primary identifier ✅
+16. Remove the name Tobi Adebisi from my repo(cleared the git global config name and email)✅
+17. Implement Pet activity schedules relation manager for employee resource and PetResource ✅
+18. Test Employee status feature and the new IsEmployee middleware with the status active and not✅
+19. saving images, profile pictures and cv documents of users and employees should be implemented✅
+20. the "client_id",in the user model not being input into the filament form so i will work debugging the update fields. ✅
+21. create relationship manager between petResource and PetActivitySchedule then with employee and pet activity schedule to view all activity under an employee ✅
+    1. display avatar for images✅
+    2. image upload with filament✅
+    3. file upload with filament(CV)✅
+    4. remove cloudinary/cloudinary_php✅
+    5. implement file upload with cloudinary✅
+    6. employee CV and other documents of the employee to be saved on cloudinary.✅
     7. make sure view resume upload works
-20. IF an employee is sacked or resigned they are unable to access their account
+22. IF an employee is sacked or resigned they are unable to access their account✅
     1. attack the schema widleware to monitor sacked or deactivated
     2. employee status field hired or resigned and once resign is clicked an employee wiil have a resignation data-table
-21. Implement better error handling for the admin panel UI
-22. Upload many certifications and documentation for employees
-23. Implementing Notification and mailing system between client and employees
-24. Implementing laravel database import, export and excel conversion with laravel excel
-25. Dashboard for Clients to track client activities
-26. Admin dashboard updates and revampining
-27. deploy the project
-28. male stud service sector
-29. mailing and notifications for admin
-30. apointment booking system
-31. Inventory management system
-32. Employee view profile page and edit some features
-33. make sure pet profile profile picture is working
-34. Remove Tobi Adebisi from my repo
+23. Implement better error handling for the admin panel UI
+24. Upload many certifications and documentation for employees
+25. Implementing Notification and mailing system between client and employees
+26. Implementing laravel database import, export and excel conversion with laravel excel
+27. Dashboard for Clients to track client activities
+28. Admin dashboard updates and revampining
+29. deploy the project
+30. male stud service sector
+31. mailing and notifications for admin
+32. apointment booking system
+33. Inventory management system
+34. Employee view profile page and edit some features
+35. make sure pet profile profile picture is working
 
 ## CODE SNIPPETS
 
