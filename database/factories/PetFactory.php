@@ -17,7 +17,7 @@ class PetFactory extends Factory
     public function definition(): array
     {
         return [
-            "name" => fake()->name(),
+            "name" => fake()->userName(),
             "breed" => fake()->word(),
             "age" => fake()->numberBetween(1, 20),
             "gender" => fake()->randomElement(['male', 'female', "harmaphrodite"]),
@@ -31,7 +31,7 @@ class PetFactory extends Factory
             "microchip_number" => fake()->numberBetween(100000, 999999),
             "date_of_adoption" => fake()->dateTimeBetween('-1 year', 'now'),
             "retainership_plan" => fake()->randomElement(['bronze', 'silver', 'gold', 'custom', 'none']),
-            "custom_plan_details" => null,
+            "custom_plan_details" => fake()->paragraph(4),
         ];
     }
 }

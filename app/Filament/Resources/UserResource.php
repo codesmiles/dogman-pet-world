@@ -11,8 +11,7 @@ use Filament\Forms\Set;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use App\Forms\Components\CustomFileUpload;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
 use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UserResource\RelationManagers;
@@ -30,23 +29,26 @@ class UserResource extends Resource
 
         return $form
             ->schema([
-            Forms\Components\FileUpload::make('profile_picture')
+                Forms\Components\FileUpload::make('profile_picture')
                     ->image()
                     ->avatar()
                     ->imageEditor()
                     ->circleCropper()
                     ->disk("cloudinary")
-                    ->directory("assets/user/profile_pictures")
+                    ->directory("assets/user/images/profile_pictures")
                     ->imageResizeMode('cover')
                     ->imageEditorEmptyFillColor('#ff0000')
                     ->uploadingMessage('Uploading Profile picture...')
                     ->acceptedFileTypes(['image/jpeg', 'image/png',])
+                    ->required(false)
+                    // ->default(fn($record)=> $record->profile_picture ?? null)
+                    // ->getStateUsing(fn($record) => $record->profile_picture)
                     ->maxSize(2048),
-                    // ->preserveFilenames()
-                    // ->storeFileNamesIn('attachment_file_names')
-                    // ->imageEditorViewportWidth('1920')
-                    // ->imageEditorViewportHeight('1080')
-                    // ->imageEditorAspectRatios(['16:9','4:3','1:1',]),
+                // ->preserveFilenames()
+                // ->storeFileNamesIn('attachment_file_names')
+                // ->imageEditorViewportWidth('1920')
+                // ->imageEditorViewportHeight('1080')
+                // ->imageEditorAspectRatios(['16:9','4:3','1:1',]),
                 Forms\Components\TextInput::make('name')->required()->maxLength(255)->placeholder("Input Name"),
                 Forms\Components\TextInput::make('client_id')->required()->maxLength(20)->default("DPW/client/" . generateId())->readOnly(),
                 Forms\Components\TextInput::make('email')->required()->email()->placeholder("Input Email Address"),
@@ -60,13 +62,12 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('profile_picture')->disk('cloudinary')->width(100)->height(100),
+                Tables\Columns\ImageColumn::make('profile_picture')->size(120)->url(fn($record) => $record->profile_picture),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('client_id'),
                 Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('address'),
                 Tables\Columns\TextColumn::make('phone_number'),
-
             ])
             ->filters([
                 //
