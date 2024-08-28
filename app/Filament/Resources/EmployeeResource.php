@@ -28,7 +28,7 @@ class EmployeeResource extends Resource
                 Forms\Components\Select::make('user_id')->relationship('user', "client_id")->searchable()->preload()->required()->label("Client Id")->disabled(fn($record) => $record !== null)->getOptionLabelFromRecordUsing(function (User $record) {
                     return "{$record->name} ({$record->client_id})";
                 }),
-                Forms\Components\FileUpload::make('resume')->directory('assets/employee/resumes')->uploadingMessage('Uploading attachment...')->acceptedFileTypes(['application/pdf'])->maxSize(1024),
+                Forms\Components\FileUpload::make('attachments')->disk("cloudinary")->directory('assets/employee/attachments')->uploadingMessage('Uploading attachment...')->acceptedFileTypes(['application/pdf'])->multiple(),
                 Forms\Components\Select::make("status")->options(['active' => 'Active','inactive' => 'Inactive'])->default("active")->label("Status"),
                 Forms\Components\TextInput::make("employee_id")->default("DPW/employee/" . generateId())->readOnly(),
                 Forms\Components\DateTimePicker::make('employment_date')->format('Y-m-d H:i')->default(now())->label("Employment Date")->disabled(fn($record) => $record !== null),
@@ -76,3 +76,4 @@ class EmployeeResource extends Resource
         ];
     }
 }
+

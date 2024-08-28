@@ -50,11 +50,11 @@ class UserResource extends Resource
                 // ->imageEditorViewportHeight('1080')
                 // ->imageEditorAspectRatios(['16:9','4:3','1:1',]),
                 Forms\Components\TextInput::make('name')->required()->maxLength(255)->placeholder("Input Name"),
-                Forms\Components\TextInput::make('client_id')->required()->maxLength(20)->default("DPW/client/" . generateId())->readOnly(),
-                Forms\Components\TextInput::make('email')->required()->email()->placeholder("Input Email Address"),
+                Forms\Components\TextInput::make('client_id')->required(fn($record) => isset ($record->client_id) ? true : false)->maxLength(20)->default("DPW/client/" . generateId())->readOnly(),
+                Forms\Components\TextInput::make('email')->email()->required()->placeholder("Input Email Address")->disabled(fn($record) => isset ($record->email) ? true : false),
                 Forms\Components\TextInput::make('address')->nullable()->maxLength(255)->placeholder("Input Address"),
-                Forms\Components\TextInput::make('password')->required()->minLength(8)->password()->rules(['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/'])->default(Mocks::DEFAULT_PASSWORD->value),
-                Forms\Components\TextInput::make('phone_number')->required()->tel()->label('Phone Number'),
+                Forms\Components\TextInput::make('password')->required(fn ($record) => !isset($record->password) ? true : false)->minLength(8)->password()->rules(['regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/'])->default(Mocks::DEFAULT_PASSWORD->value),
+                Forms\Components\TextInput::make('phone_number')->required(fn($record) => !isset ($record->phone_number) ? true : false)->tel()->label('Phone Number'),
             ]);
     }
 

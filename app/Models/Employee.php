@@ -18,6 +18,20 @@ class Employee extends Model
      */
     protected $keyType = 'string';
     public $incrementing = false;
+    protected $casts = [
+        'attachments' => 'array',
+    ];
+
+
+    protected $fillable = [
+        "status",
+        "user_id",
+        "is_admin",
+        "attachments",
+        "employee_id",
+        "employment_date",
+
+    ];
 
     public static function booted()
     {
@@ -27,16 +41,6 @@ class Employee extends Model
             }
         });
     }
-    protected $fillable = [
-        "resume",
-        "status",
-        "user_id",
-        "is_admin",
-        "employee_id",
-        "employment_date",
-
-    ];
-
 
     public function user()
     {
@@ -47,4 +51,6 @@ class Employee extends Model
     {
         return $this->hasMany(PetActivitySchedule::class);
     }
+
+    
 }

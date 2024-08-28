@@ -18,7 +18,7 @@ class EmployeeFactory extends Factory
     {
         return [
             "employee_id" => "DPW/employee/".fake()->unique()->numberBetween(0, 100000),
-            // "resume" => fake()->unique()->,
+            // "documents" => fake()->unique()->,
             "status" => "active",
             "employment_date" => now(),
             "is_admin" => fake()->boolean(20),
