@@ -53,12 +53,13 @@
 33. Inventory management system
 34. Employee view profile page and edit some features
 35. make sure pet profile profile picture is working
-36. make user be in charge of updating their password by themselves
+36. implement forget and reset password for admin and employees
+37. make user be in charge of updating their password by themselves
     1. forget and reset password
     2. update password upon registration
-    3. admin ability to authenticate self as a particular user
+    3. admin ability to authenticate self or login as a particular user
     4. admin send mail button to user so password should be updated by the user
-37. make edit customer input field not required for some fields when trying to edit users
+38. make edit customer input field not required for some fields when trying to edit users
 
 ## CODE SNIPPETS
 
